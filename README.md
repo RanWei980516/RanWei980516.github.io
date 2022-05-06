@@ -1,37 +1,21 @@
-## Welcome to GitHub Pages
+## Spectrum Representation
 
-You can use the [editor on GitHub](https://github.com/RanWei980516/RanWei980516.github.io/edit/main/README.md) to maintain and preview the content for your website in Markdown files.
+Amplitude modulation (AM) and Frequency modulation (FM) are two typical modulation techniques in electronic communication. AM modulation is a process by which the wave signal is transmitted by modulating the amplitude of the signal. AM signal is commonly used in transmitting messages in radio wave. FM is the encoding of information in a carrier wave by varying the instantaneous frequency of the wave. The technology is used in telecommunication, radio broadcasting, signal processing, and computing. In this project, the main task is to simulate these two types of signal and analyze their properties. 
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+This project consists of 3 labs. Each of the labs will focus on different aspects of spectrum representation. We will analyze the most basic AM and FM signal and generate sound at very beginning. Then, we will get to more complicated signals to see how they related to the basic sine wave.
 
-### Markdown
+Each folder in the code section is associated with the corresponding lab by name. The main.m file can be run to generate all plots and sounds. The extra files include functions or seperate audio files.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+### Methods
 
-```markdown
-Syntax highlighted code block
+The main software for this project is MATLAB and a special toolbox included on DSP First website. We used MATLAB to analyze different properties of signals and used special commands to make them audible.
 
-# Header 1
-## Header 2
-### Header 3
 
-- Bulleted
-- List
+### Reference
+Labs: 
+P4 AM and FM Sinusoidal Signals
+P7 FM Sythesise for Musical Instruments
+S7 Spectrograms of AM and FM Signals
 
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/RanWei980516/RanWei980516.github.io/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+Available at:
+https://dspfirst.gatech.edu/#03spect
