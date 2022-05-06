@@ -1,0 +1,497 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Main</title><meta name="generator" content="MATLAB 9.8"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2022-05-04"><meta name="DC.source" content="Main.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">Lab S7: Spectrograms of AM and FM Signals</a></li><li><a href="#2">S7 lab: part 2.1.2</a></li><li><a href="#3">Part A: code for the beat signal</a></li><li><a href="#4">Part B: Location of 2 spectrum lines</a></li><li><a href="#5">Part C: spectrogram of b(t) using a (window) section length of LSECT = 256</a></li><li><a href="#6">S7 lab: part 2.1.3</a></li><li><a href="#7">Part A: From your first experiment, determine C</a></li><li><a href="#8">Part B: Now change f_delta to 16 Hz and repeat the resolution experiment in Sect. 2.1.2</a></li><li><a href="#9">S7 lab: part 2.2</a></li><li><a href="#10">Part A Generate a chirp signal that starts at 2000 Hz when t=0s, and chirps down to 1000 Hz, at t=1.5s</a></li><li><a href="#11">Part B (Generate the chirp signal in MATLAB and make a spectrogram with LSECT = 200)</a></li><li><a href="#12">Part C Will you hear negative frequency?</a></li><li><a href="#13">S7 lab: part 2.2.1</a></li><li><a href="#14">Part A Generate a chirp signal same as 2.2 but with Lsect = 1600</a></li><li><a href="#15">Part B When LSECT = 1600, determine the section duration TSECT in sec</a></li><li><a href="#16">Part C Based on TSECT, determine the time locations where the spectrum is being computed</a></li></ul></div><h2 id="1">Lab S7: Spectrograms of AM and FM Signals</h2><pre>Third exercise of project group 1</pre><p>This lab involves synthesizing AM and FM Signals and verifying the correct frequency by observing spectrograms. The main goal is to learn about the connection between time-domain definition and frequency domain content.</p><pre class="codeinput"><span class="comment">% note the sound portions of this lab are more accurate if run in their own</span>
+<span class="comment">% .m file. Together it seems to cut the length short.</span>
+</pre><h2 id="2">S7 lab: part 2.1.2</h2><p>The first part is called Beat Notes and Frequency Resolution This part focuses on 2 sinusoidal signals that are multiplied in the time domain and result in a new signal with a different amplitude and frequency.</p><pre class="codeinput">clear <span class="string">all</span>;
+</pre><h2 id="3">Part A: code for the beat signal</h2><p>In this part, we are given a beat signal b(t) with a sampling frequency of 8000, duration of 5s, and a change in frequency of 4Hz. The other values are derived in the prelab.</p><pre class="codeinput">Amp = 10; <span class="comment">%-- B in equation above</span>
+fc = 1024; <span class="comment">%-- center frequency</span>
+phic = 2*pi*rand; <span class="comment">%-- phase of 2nd sinusoid (random)</span>
+fDelta = 4; <span class="comment">%-- modulating frequency</span>
+phiDelta = 2*pi*rand; <span class="comment">%-- phase of 1st sinusoid (random)</span>
+tStart = 0; <span class="comment">%-- starting time (secs)</span>
+tStop = 5; <span class="comment">%-- ending time (secs)</span>
+fSamp = 8000;
+
+tt = tStart:(1/fSamp):tStop; <span class="comment">%-- vector of times</span>
+xx = Amp*cos(2*pi*fc*tt+phic).*cos(2*pi*fDelta*tt+phiDelta);
+soundsc( xx, fSamp ); <span class="comment">%-- uncomment to hear the sound</span>
+figure(1);
+plot(tt,xx,<span class="string">'b'</span>), colorbar, grid <span class="string">on</span> <span class="comment">%-- with negative frequencies</span>
+title(<span class="string">"Beat Signal"</span>);
+xlabel(<span class="string">"tt"</span>);
+ylabel(<span class="string">"xx"</span>);
+</pre><img vspace="5" hspace="5" src="Main_01.png" alt=""> <h2 id="4">Part B: Location of 2 spectrum lines</h2><p>This part involves using the fc and f_delta to calculate the frequency of the 2 specrum lines.</p><pre class="codeinput"><span class="comment">% f_delta = 4 Hz</span>
+<span class="comment">% fc = 1024 Hz</span>
+<span class="comment">%</span>
+<span class="comment">% f1 = fc-f_delta = 1024-4 = 1020 Hz</span>
+<span class="comment">% f2 = fc+f_delta = 1024+4 = 1028 Hz</span>
+<span class="comment">%</span>
+<span class="comment">% so there are 2 spectrum line at 1020 Hz and 1028Hz</span>
+
+clear <span class="string">all</span>;
+</pre><h2 id="5">Part C: spectrogram of b(t) using a (window) section length of LSECT = 256</h2><p>In this next part we add a window with a section length to the previous code. Later we also calculate the associated section duration (Tsect).</p><pre class="codeinput">Amp = 10; <span class="comment">%-- B in equation above</span>
+fc = 1024; <span class="comment">%-- center frequency</span>
+phic = 2*pi*rand; <span class="comment">%-- phase of 2nd sinusoid (random)</span>
+fDelta = 4; <span class="comment">%-- modulating frequency</span>
+phiDelta = 2*pi*rand; <span class="comment">%-- phase of 1st sinusoid (random)</span>
+tStart = 0; <span class="comment">%-- starting time (secs)</span>
+tStop = 5; <span class="comment">%-- ending time (secs)</span>
+fSamp = 8000;
+
+tt = tStart:(1/fSamp):tStop; <span class="comment">%-- vector of times</span>
+xx = Amp*cos(2*pi*fc*tt+phic).*cos(2*pi*fDelta*tt+phiDelta);
+Lsect = 3700;  <span class="comment">% 256 original Lsect is too small, 3700 works (zoom in on point of interest to see specrum)</span>
+figure(2);
+plotspec(xx,fSamp,Lsect), colorbar, grid <span class="string">on</span> <span class="comment">%-- with negative frequencies</span>
+title(<span class="string">"Beat note"</span>);
+xlabel(<span class="string">"xx"</span>);
+ylabel(<span class="string">"Frequency (Hz)"</span>);
+
+<span class="comment">% The spectrum obtained does not clearly show 2 unique lines. This is due</span>
+<span class="comment">% to Lsect having a small value (256) which prevents the spectrogram from</span>
+<span class="comment">% getting accurate results. A longer section length would fix this.</span>
+
+<span class="comment">% frequencys are correct at 3700 Lsect value</span>
+<span class="comment">% Tsect = section duration</span>
+<span class="comment">% Tsect = Lsect/fs = 3700/8000 = .4625 sec</span>
+</pre><pre class="codeoutput">
+ans = 
+
+  Image with properties:
+
+           CData: [1851&times;20 double]
+    CDataMapping: 'scaled'
+
+  Use GET to show all properties
+
+</pre><img vspace="5" hspace="5" src="Main_02.png" alt=""> <h2 id="6">S7 lab: part 2.1.3</h2><p>given new f_delta calculate the new Lsect and plot to see new 2 spectum</p><h2 id="7">Part A: From your first experiment, determine C</h2><p><tt>f1 - f2</tt> = C/Tsect C = Tsect|f1 - f2| = 0.4625s * <tt>1020 - 1028</tt> = 3.7</p><pre class="codeinput">clear <span class="string">all</span>;
+</pre><h2 id="8">Part B: Now change f_delta to 16 Hz and repeat the resolution experiment in Sect. 2.1.2</h2><p>f_delta = 16 Hz fc = 1024 Hz</p><p>f1 = fc-f_delta = 1024-16 = 1008 Hz f2 = fc+f_delta = 1024+16 = 1040 Hz</p><p>so there are 2 spectrum line at 1008 Hz and 1040Hz</p><p>Tsect = 3.7/|1008-1040| = .115625 sec Lsect = Tsect*fs = .115625 sec * 8000 = 925</p><pre class="codeinput"><span class="comment">% now plot the results given new calculated Lsect and frequencies and</span>
+<span class="comment">% verify that 2 unique spectrum can still be seen.</span>
+
+Amp = 10; <span class="comment">%-- B in equation above</span>
+fc = 1024; <span class="comment">%-- center frequency</span>
+phic = 2*pi*rand; <span class="comment">%-- phase of 2nd sinusoid (random)</span>
+fDelta = 16; <span class="comment">%-- modulating frequency</span>
+phiDelta = 2*pi*rand; <span class="comment">%-- phase of 1st sinusoid (random)</span>
+tStart = 0; <span class="comment">%-- starting time (secs)</span>
+tStop = 5; <span class="comment">%-- ending time (secs)</span>
+fSamp = 8000;
+
+tt = tStart:(1/fSamp):tStop; <span class="comment">%-- vector of times</span>
+xx = Amp*cos(2*pi*fc*tt+phic).*cos(2*pi*fDelta*tt+phiDelta);
+Lsect = 925;
+figure(3);
+plotspec(xx,fSamp,Lsect), colorbar, grid <span class="string">on</span> <span class="comment">%-- with negative frequencies</span>
+title(<span class="string">"Beat note (2.1.3)"</span>);
+xlabel(<span class="string">"xx"</span>);
+ylabel(<span class="string">"Frequency (Hz)"</span>);
+
+<span class="comment">% just like figure 2 we need to zoom in on the frequency point of interest</span>
+<span class="comment">% to see the 2 spectrum</span>
+<span class="comment">% 2 spectrum can be seen with the calculated Lsect for the new f_delta</span>
+</pre><pre class="codeoutput">
+ans = 
+
+  Image with properties:
+
+           CData: [463&times;85 double]
+    CDataMapping: 'scaled'
+
+  Use GET to show all properties
+
+</pre><img vspace="5" hspace="5" src="Main_03.png" alt=""> <h2 id="9">S7 lab: part 2.2</h2><p>Test negative chirps A chirp with a negative instantaneous frequency</p><pre class="codeinput">clear <span class="string">all</span>;
+</pre><h2 id="10">Part A Generate a chirp signal that starts at 2000 Hz when t=0s, and chirps down to 1000 Hz, at t=1.5s</h2><pre class="codeinput">fSamp = 8000; <span class="comment">%-Number of time samples per second</span>
+dt = 1/fSamp;
+tStart = 0;
+tStop = 1.5;
+tt = tStart:dt:tStop;
+mu = -1000;
+<span class="comment">% fzero = 2000</span>
+phi = 2*pi*rand; <span class="comment">%-- random phase</span>
+<span class="comment">%</span>
+psi = 2*pi*mu*tt.^2 + 2*pi*2000*tt + phi;
+<span class="comment">%</span>
+cc = real( 7.7*exp(1j*psi) );
+soundsc( cc, fSamp ); <span class="comment">%-- uncomment to hear the sound</span>
+figure(4);
+plotspec( cc+1j*1e-12, fSamp, 200 ), colorbar, grid <span class="string">on</span> <span class="comment">%-- with negative frequencies</span>
+title(<span class="string">"Linear Chirp"</span>);
+xlabel(<span class="string">"signal size"</span>);
+ylabel(<span class="string">"fsamp"</span>);
+<span class="comment">%the signal pitch goes down because of the negative component</span>
+</pre><pre class="codeoutput">
+ans = 
+
+  Image with properties:
+
+           CData: [200&times;119 double]
+    CDataMapping: 'scaled'
+
+  Use GET to show all properties
+
+</pre><img vspace="5" hspace="5" src="Main_04.png" alt=""> <h2 id="11">Part B (Generate the chirp signal in MATLAB and make a spectrogram with LSECT = 200)</h2><p>the Lsect is 200 as seen in the graph above Tsect = 200/8000 = 0.025s</p><pre class="codeinput">clear <span class="string">all</span>;
+</pre><h2 id="12">Part C Will you hear negative frequency?</h2><p>Run the same test as part A of this exercise, but start at a frequency of zero and chirp down 1000 Hz.</p><pre class="codeinput">fSamp = 8000; <span class="comment">%-Number of time samples per second</span>
+dt = 1/fSamp;
+tStart = 0;
+tStop = 1.5;
+tt = tStart:dt:tStop;
+mu = -1000;
+<span class="comment">% fzero = 0</span>
+phi = 2*pi*rand; <span class="comment">%-- random phase</span>
+<span class="comment">%</span>
+psi = 2*pi*mu*tt.^2 + 2*pi*0*tt + phi;
+<span class="comment">%</span>
+cc = real( 7.7*exp(1j*psi) );
+soundsc( cc, fSamp ); <span class="comment">%-- uncomment to hear the sound</span>
+figure(5);
+plotspec( cc+1j*1e-12, fSamp, 256 ), colorbar, grid <span class="string">on</span> <span class="comment">%-- with negative frequencies</span>
+title(<span class="string">"Negative Chirp"</span>);
+xlabel(<span class="string">"signal size"</span>);
+ylabel(<span class="string">"fsamp"</span>);
+<span class="comment">% negative frequency can't be heard. A spectrum that starts with a zero</span>
+<span class="comment">% frequency and gradually chirps down will produce a result that consists</span>
+<span class="comment">% of a positive mirror image, which is what is heard from the soundsc</span>
+<span class="comment">% function. starts low pitch and goes to high pitch.</span>
+</pre><pre class="codeoutput">
+ans = 
+
+  Image with properties:
+
+           CData: [256&times;92 double]
+    CDataMapping: 'scaled'
+
+  Use GET to show all properties
+
+</pre><img vspace="5" hspace="5" src="Main_05.png" alt=""> <h2 id="13">S7 lab: part 2.2.1</h2><p>Look at a signal with nonconstant frequency and an study how the temporal features of the spectrogram depend on the section length</p><p>The spectrogram uses 50 percent overlapping and skipping. By knowing this information, we can determine the time locations where the spectrum is being generated.</p><pre class="codeinput">clear <span class="string">all</span>;
+</pre><h2 id="14">Part A Generate a chirp signal same as 2.2 but with Lsect = 1600</h2><pre class="codeinput">fSamp = 8000; <span class="comment">%-Number of time samples per second</span>
+dt = 1/fSamp;
+tStart = 0;
+tStop = 1.5;
+tt = tStart:dt:tStop;
+mu = -1000;
+fzero = 2000;
+phi = 2*pi*rand; <span class="comment">%-- random phase</span>
+<span class="comment">%</span>
+psi = 2*pi*mu*tt.^2 + 2*pi*2000*tt + phi;
+<span class="comment">%</span>
+cc = real( 7.7*exp(1j*psi) );
+soundsc( cc, fSamp ); <span class="comment">%-- uncomment to hear the sound</span>
+figure(6);
+plotspec( cc+1j*1e-12, fSamp, 1600 ), colorbar, grid <span class="string">on</span> <span class="comment">%-- with negative frequencies</span>
+title(<span class="string">"Chirp (1600 Lsect)"</span>);
+xlabel(<span class="string">"signal size"</span>);
+ylabel(<span class="string">"fsamp"</span>);
+</pre><pre class="codeoutput">
+ans = 
+
+  Image with properties:
+
+           CData: [1600&times;14 double]
+    CDataMapping: 'scaled'
+
+  Use GET to show all properties
+
+</pre><img vspace="5" hspace="5" src="Main_06.png" alt=""> <h2 id="15">Part B When LSECT = 1600, determine the section duration TSECT in sec</h2><p>Tsect = Lsect/fsamp = 1600/8000 = 0.26667</p><h2 id="16">Part C Based on TSECT, determine the time locations where the spectrum is being computed</h2><p>section time = 0.5*n*Lsect, n=nth value of the segment length  when n = 1, (the first section length). The inside is 1s where the first  section is overlapped by the second section.</p><p>when n = 2, (the second section length). The inside is 0.2s where the second section is overlapped by the third section.</p><p>when n = 3, (the third section length). The inside is 0.3s where the third section is overlapped by the fourth section.</p><p>when n = 4, (the fourth section length). The inside is 0.4s where the fourth section is overlapped by the fifth section length.</p><p>This pattern continues til n = 10., Tsect = 1s, which is where the overlap occurs. Tsect = (0.5*10*1600)/8000 = 1s section time (50%) = (0.5*n*Lsect)/fs, n = 1-10 section time = 0.1,0.2,0.3.... 1.4.</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2020a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Lab S7: Spectrograms of AM and FM Signals
+%  Third exercise of project group 1
+%
+% This lab involves synthesizing AM and FM Signals and verifying the correct
+% frequency by observing spectrograms. The main goal is to learn about the connection
+% between time-domain definition and frequency domain content.
+
+% note the sound portions of this lab are more accurate if run in their own
+% .m file. Together it seems to cut the length short.
+
+%% S7 lab: part 2.1.2
+% The first part is called Beat Notes and Frequency Resolution
+% This part focuses on 2 sinusoidal signals that are multiplied in the time 
+% domain and result in a new signal with a different amplitude and frequency.
+
+clear all;
+%% Part A: code for the beat signal
+% In this part, we are given a beat signal b(t) with a sampling frequency of
+% 8000, duration of 5s, and a change in frequency of 4Hz. The other values
+% are derived in the prelab.
+
+Amp = 10; %REPLACE_WITH_DASH_DASH B in equation above
+fc = 1024; %REPLACE_WITH_DASH_DASH center frequency
+phic = 2*pi*rand; %REPLACE_WITH_DASH_DASH phase of 2nd sinusoid (random)
+fDelta = 4; %REPLACE_WITH_DASH_DASH modulating frequency
+phiDelta = 2*pi*rand; %REPLACE_WITH_DASH_DASH phase of 1st sinusoid (random)
+tStart = 0; %REPLACE_WITH_DASH_DASH starting time (secs)
+tStop = 5; %REPLACE_WITH_DASH_DASH ending time (secs)
+fSamp = 8000;
+
+tt = tStart:(1/fSamp):tStop; %REPLACE_WITH_DASH_DASH vector of times
+xx = Amp*cos(2*pi*fc*tt+phic).*cos(2*pi*fDelta*tt+phiDelta);
+soundsc( xx, fSamp ); %REPLACE_WITH_DASH_DASH uncomment to hear the sound
+figure(1);
+plot(tt,xx,'b'), colorbar, grid on %REPLACE_WITH_DASH_DASH with negative frequencies
+title("Beat Signal");
+xlabel("tt");
+ylabel("xx");
+%% Part B: Location of 2 spectrum lines
+% This part involves using the fc and f_delta to calculate the frequency
+% of the 2 specrum lines.
+
+% f_delta = 4 Hz
+% fc = 1024 Hz
+% 
+% f1 = fc-f_delta = 1024-4 = 1020 Hz
+% f2 = fc+f_delta = 1024+4 = 1028 Hz
+% 
+% so there are 2 spectrum line at 1020 Hz and 1028Hz
+
+clear all;
+%% Part C: spectrogram of b(t) using a (window) section length of LSECT = 256
+% In this next part we add a window with a section length to the previous
+% code. Later we also calculate the associated section duration (Tsect).
+
+Amp = 10; %REPLACE_WITH_DASH_DASH B in equation above
+fc = 1024; %REPLACE_WITH_DASH_DASH center frequency
+phic = 2*pi*rand; %REPLACE_WITH_DASH_DASH phase of 2nd sinusoid (random)
+fDelta = 4; %REPLACE_WITH_DASH_DASH modulating frequency
+phiDelta = 2*pi*rand; %REPLACE_WITH_DASH_DASH phase of 1st sinusoid (random)
+tStart = 0; %REPLACE_WITH_DASH_DASH starting time (secs)
+tStop = 5; %REPLACE_WITH_DASH_DASH ending time (secs)
+fSamp = 8000;
+
+tt = tStart:(1/fSamp):tStop; %REPLACE_WITH_DASH_DASH vector of times
+xx = Amp*cos(2*pi*fc*tt+phic).*cos(2*pi*fDelta*tt+phiDelta);
+Lsect = 3700;  % 256 original Lsect is too small, 3700 works (zoom in on point of interest to see specrum)
+figure(2);
+plotspec(xx,fSamp,Lsect), colorbar, grid on %REPLACE_WITH_DASH_DASH with negative frequencies
+title("Beat note");
+xlabel("xx");
+ylabel("Frequency (Hz)");
+
+% The spectrum obtained does not clearly show 2 unique lines. This is due
+% to Lsect having a small value (256) which prevents the spectrogram from
+% getting accurate results. A longer section length would fix this.
+
+% frequencys are correct at 3700 Lsect value
+% Tsect = section duration
+% Tsect = Lsect/fs = 3700/8000 = .4625 sec
+
+%% S7 lab: part 2.1.3
+% given new f_delta calculate the new Lsect and plot to see new 2 spectum
+%% Part A: From your first experiment, determine C
+% |f1 - f2| = C/Tsect
+% C = Tsect|f1 - f2| = 0.4625s * |1020 - 1028| = 3.7
+
+clear all;
+%% Part B: Now change f_delta to 16 Hz and repeat the resolution experiment in Sect. 2.1.2
+% f_delta = 16 Hz
+% fc = 1024 Hz
+% 
+% f1 = fc-f_delta = 1024-16 = 1008 Hz
+% f2 = fc+f_delta = 1024+16 = 1040 Hz
+% 
+% so there are 2 spectrum line at 1008 Hz and 1040Hz
+%
+% Tsect = 3.7/|1008-1040| = .115625 sec
+% Lsect = Tsect*fs = .115625 sec * 8000 = 925
+
+% now plot the results given new calculated Lsect and frequencies and
+% verify that 2 unique spectrum can still be seen.
+
+Amp = 10; %REPLACE_WITH_DASH_DASH B in equation above
+fc = 1024; %REPLACE_WITH_DASH_DASH center frequency
+phic = 2*pi*rand; %REPLACE_WITH_DASH_DASH phase of 2nd sinusoid (random)
+fDelta = 16; %REPLACE_WITH_DASH_DASH modulating frequency
+phiDelta = 2*pi*rand; %REPLACE_WITH_DASH_DASH phase of 1st sinusoid (random)
+tStart = 0; %REPLACE_WITH_DASH_DASH starting time (secs)
+tStop = 5; %REPLACE_WITH_DASH_DASH ending time (secs)
+fSamp = 8000;
+
+tt = tStart:(1/fSamp):tStop; %REPLACE_WITH_DASH_DASH vector of times
+xx = Amp*cos(2*pi*fc*tt+phic).*cos(2*pi*fDelta*tt+phiDelta);
+Lsect = 925;
+figure(3);
+plotspec(xx,fSamp,Lsect), colorbar, grid on %REPLACE_WITH_DASH_DASH with negative frequencies
+title("Beat note (2.1.3)");
+xlabel("xx");
+ylabel("Frequency (Hz)");
+
+% just like figure 2 we need to zoom in on the frequency point of interest
+% to see the 2 spectrum
+% 2 spectrum can be seen with the calculated Lsect for the new f_delta
+
+%% S7 lab: part 2.2
+% Test negative chirps
+% A chirp with a negative instantaneous frequency
+
+clear all;
+%% Part A Generate a chirp signal that starts at 2000 Hz when t=0s, and chirps down to 1000 Hz, at t=1.5s
+fSamp = 8000; %-Number of time samples per second
+dt = 1/fSamp;
+tStart = 0;
+tStop = 1.5;
+tt = tStart:dt:tStop;
+mu = -1000;
+% fzero = 2000
+phi = 2*pi*rand; %REPLACE_WITH_DASH_DASH random phase
+%
+psi = 2*pi*mu*tt.^2 + 2*pi*2000*tt + phi; 
+%
+cc = real( 7.7*exp(1j*psi) );
+soundsc( cc, fSamp ); %REPLACE_WITH_DASH_DASH uncomment to hear the sound
+figure(4);
+plotspec( cc+1j*1e-12, fSamp, 200 ), colorbar, grid on %REPLACE_WITH_DASH_DASH with negative frequencies
+title("Linear Chirp");
+xlabel("signal size");
+ylabel("fsamp");
+%the signal pitch goes down because of the negative component
+
+%% Part B (Generate the chirp signal in MATLAB and make a spectrogram with LSECT = 200)
+% the Lsect is 200 as seen in the graph above
+% Tsect = 200/8000 = 0.025s
+
+clear all;
+%% Part C Will you hear negative frequency?
+% Run the same test as part A of this exercise, but start at a frequency of
+% zero and chirp down 1000 Hz.
+
+fSamp = 8000; %-Number of time samples per second
+dt = 1/fSamp;
+tStart = 0;
+tStop = 1.5;
+tt = tStart:dt:tStop;
+mu = -1000;
+% fzero = 0
+phi = 2*pi*rand; %REPLACE_WITH_DASH_DASH random phase
+%
+psi = 2*pi*mu*tt.^2 + 2*pi*0*tt + phi; 
+%
+cc = real( 7.7*exp(1j*psi) );
+soundsc( cc, fSamp ); %REPLACE_WITH_DASH_DASH uncomment to hear the sound
+figure(5);
+plotspec( cc+1j*1e-12, fSamp, 256 ), colorbar, grid on %REPLACE_WITH_DASH_DASH with negative frequencies
+title("Negative Chirp");
+xlabel("signal size");
+ylabel("fsamp");
+% negative frequency can't be heard. A spectrum that starts with a zero
+% frequency and gradually chirps down will produce a result that consists
+% of a positive mirror image, which is what is heard from the soundsc
+% function. starts low pitch and goes to high pitch.
+
+%% S7 lab: part 2.2.1
+% Look at a signal with nonconstant frequency and an study how the temporal features of the
+% spectrogram depend on the section length
+% 
+% The spectrogram uses 50 percent overlapping and skipping. By knowing this information,
+% we can determine the time locations where the spectrum is being generated.
+
+clear all;
+%% Part A Generate a chirp signal same as 2.2 but with Lsect = 1600
+fSamp = 8000; %-Number of time samples per second
+dt = 1/fSamp;
+tStart = 0;
+tStop = 1.5;
+tt = tStart:dt:tStop;
+mu = -1000;
+fzero = 2000;
+phi = 2*pi*rand; %REPLACE_WITH_DASH_DASH random phase
+%
+psi = 2*pi*mu*tt.^2 + 2*pi*2000*tt + phi; 
+%
+cc = real( 7.7*exp(1j*psi) );
+soundsc( cc, fSamp ); %REPLACE_WITH_DASH_DASH uncomment to hear the sound
+figure(6);
+plotspec( cc+1j*1e-12, fSamp, 1600 ), colorbar, grid on %REPLACE_WITH_DASH_DASH with negative frequencies
+title("Chirp (1600 Lsect)");
+xlabel("signal size");
+ylabel("fsamp");
+
+%% Part B When LSECT = 1600, determine the section duration TSECT in sec
+% Tsect = Lsect/fsamp = 1600/8000 = 0.26667
+
+%% Part C Based on TSECT, determine the time locations where the spectrum is being computed
+% section time = 0.5*n*Lsect, n=nth value of the segment length
+%  when n = 1, (the first section length). The inside is 1s where the first
+%  section is overlapped by the second section.
+%
+% when n = 2, (the second section length). The inside is 0.2s where the
+% second section is overlapped by the third section.
+%
+% when n = 3, (the third section length). The inside is 0.3s where the
+% third section is overlapped by the fourth section.
+%
+% when n = 4, (the fourth section length). The inside is 0.4s where the
+% fourth section is overlapped by the fifth section length.
+%
+% This pattern continues til n = 10., Tsect = 1s, which is where the
+% overlap occurs. 
+% Tsect = (0.5*10*1600)/8000 = 1s
+% section time (50%) = (0.5*n*Lsect)/fs, n = 1-10
+% section time = 0.1,0.2,0.3.... 1.4.
+##### SOURCE END #####
+--></body></html>
